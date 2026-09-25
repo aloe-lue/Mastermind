@@ -1,0 +1,186 @@
+@font-face {
+	font-family: 'syn-nova-normal';
+	src: url('../fonts/syn_nova/synnova-normal-webfont.woff2') format('woff2'),
+	     url('../fonts/syn_nova/synnova-normal-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+ h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*,
+*::before,
+*::after {
+	border: 1px solid rgba(100, 0, 0, 0.50);
+	box-sizing: border-box;
+	background-color: ghostwhite;
+}
+
+h1.game_title {
+	text-align: center;
+	font-family: "syn-nova-normal", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	border: 1px solid transparent;
+}
+
+#Mastermind {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.colorCodes {
+	display: flex;
+	justify-content: center;
+	border: 2px solid transparent;
+	border-radius: 0.64rem;
+	margin: 10px;
+}
+
+
+
+.clues > div {
+    border: 2px solid transparent;
+}
+
+dialog#codeMakerDialog, 
+dialog.winOrLose {
+    border: 2px solid transparent;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-radius: .75rem;
+}
+
+h2.instruction, p.instruction {
+	border: 2px solid transparent;
+	font-family: "syn-nova-normal", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+p.instruction {
+	padding: 5px;
+	margin: 5px;
+}
+
+button#closeCMDialog,
+button#addFruitCode,
+button#removeFruitCode,
+button#codeMakerGo {
+	font-family: "syn-nova-normal", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+div.codeMaker button.fruitCode.hide {
+	visibility: hidden;
+}
+
+button {
+	appearance: none;
+	border: none;
+	background-color: transparent;
+}
+
+
+
+.codeMaker {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+.codeMaker[data-is-hidden="true"] {
+	display: none;
+}
+
+.codeMaker[data-is-hidden="false"] {
+	display: flex;
+}
+
+.codeMakerImpostor[data-is-hidden="false"] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+.codeMakerImpostor[data-is-hidden="true"] {
+	display: none;
+}
+
+.clues {
+	display: grid;
+	margin: 5px;
+	padding: 20px;
+}
+
+.pickColorCodes > button {
+	border: 2px solid transparent;
+	border-radius: 0.64rem;
+}
+
+button.selected {
+    	border: 2px solid lightcoral;
+    	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.3),
+	inset 0px 5px 0 rgba(255, 255, 255, 0.2),
+	inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+.clues > div {
+	display: grid;
+	grid-template-columns: 50px 1fr 1fr 1fr 1fr;
+	border: 1px solid transparent;
+}
+.CodeBreakersRows {
+	display: flex;
+}
+
+blockquote.author, h3.announceConclusion, p.announceConclusion
+{
+	border: 1px solid transparent;
+	font-family: "syn-nova-normal", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	padding: 10px;
+	margin: 10px;
+}
+
+

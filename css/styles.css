@@ -107,7 +107,8 @@ p.instruction {
 button#closeCMDialog,
 button#addFruitCode,
 button#removeFruitCode,
-button#codeMakerGo {
+button#codeMakerGo,
+button.closeAnnouncement {
 	font-family: "syn-nova-normal", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -155,6 +156,12 @@ button {
 	padding: 20px;
 }
 
+
+.clues > div.highlight {
+	border: 2px solid red;
+
+}
+
 .pickColorCodes > button {
 	border: 2px solid transparent;
 	border-radius: 0.64rem;
@@ -169,8 +176,13 @@ button.selected {
 .clues > div {
 	display: grid;
 	grid-template-columns: 50px 1fr 1fr 1fr 1fr;
-	border: 1px solid transparent;
+	border: 2px solid transparent;
 }
+
+.clues > div.highlight {
+	border: 2px solid lightcoral;
+}
+
 .CodeBreakersRows {
 	display: flex;
 }

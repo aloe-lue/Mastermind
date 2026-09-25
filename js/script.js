@@ -342,7 +342,7 @@ window.onload = (wEvent) =>
 	// this helps design toggling elements on close and on open
 	let pick = 1;
 
-	newCodeMadeBtn.addEventListener("click", (event) =>
+	function newCodeToBeMade(event)
 	{
 		codeMakerDialog.showModal();
 
@@ -362,7 +362,9 @@ window.onload = (wEvent) =>
 		});
 
 		showMastermindFruits(mastermind);
-	});
+	};
+
+	newCodeMadeBtn.addEventListener("click", newCodeToBeMade);
 
 	pickColorCodes.forEach((element, index) =>
 	{
@@ -443,15 +445,70 @@ window.onload = (wEvent) =>
 				announceWinnerH3.textContent = "You Win";
 				announceWinnerP.textContent = "Broo lezz goo";
 				announceWinner.showModal();
+
+				mastermind.clearCodeMaker();
+
+				clearFeedbackCodes(mastermind);
+				clearCodeBreakers(mastermind);
+				pick = 1;
+				
+				document.querySelector(`button[data-fruit-num="${pick}"]`)
+				.classList.add("selected");
+
+
+				fruitCodes.forEach((element) =>
+				{
+					element.classList.remove("hide");
+				});
+				for (let i = 0; i < 9; i++) {
+					const guessRow =  document.querySelector(`div[data-code-breakers="${i}"]`);
+					guessRow.classList.remove("highlight");
+				}
 			}
 
 			if (mastermind.guessesLeft < 0) {
 				announceWinnerH3.textContent = "You lose";
 				announceWinnerP.textContent = "mastermind is better predictable";
 				announceWinner.showModal();
+
+				mastermind.clearCodeMaker();
+
+				clearFeedbackCodes(mastermind);
+				clearCodeBreakers(mastermind);
+				pick = 1;
+				
+				document.querySelector(`button[data-fruit-num="${pick}"]`)
+				.classList.add("selected");
+
+
+				fruitCodes.forEach((element) =>
+				{
+					element.classList.remove("hide");
+				});
+
+				for (let i = 0; i < 9; i++) {
+					const guessRow =  document.querySelector(`div[data-code-breakers="${i}"]`);
+					guessRow.classList.remove("highlight");
+				}
+			}
+
+			if (mastermind.guessesLeft >= 0) {
+				const currentGuessRow =  document.querySelector(`div[data-code-breakers="${mastermind.guessesLeft}"]`);
+				currentGuessRow.classList.add("highlight");
+
+
+				if (mastermind.guessesLeft < 9) {
+					const prevGuessRow =  document.querySelector(`div[data-code-breakers="${mastermind.guessesLeft+1}"]`);
+
+					prevGuessRow.classList.remove("highlight");
+				}
 			}
 
 			showFeedbackCodes(mastermind);
 		});
+	});
+
+	document.querySelector("button.closeAnnouncement").addEventListener("click", () => {
+		announceWinner.close();
 	});
 }

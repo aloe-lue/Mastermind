@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastermind</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+  </head>
+<body>
+  <div id="Mastermind">
+  <h1 class="game_title"> Mastermind </h1>
+    <div class="gameContainer">
+      <div class="Secret" >
+        <div  class="codeMaker" data-is-hdden="false">
+          <button class="fruitCode hide" data-fruit-cm="0">
+            <img src="img/placeholder.svg" alt="firstFruit" width="40" height="40" >
+          </button>
+          <button class="fruitCode hide" data-fruit-cm="1">
+            <img src="img/placeholder.svg" alt="secondFruit" width="40" height="40" >
+          </button>
+          <button class="fruitCode hide" data-fruit-cm="2">
+            <img src="img/placeholder.svg" alt="thirdFruit" width="40" height="40" >
+          </button>
+          <button class="fruitCode hide" data-fruit-cm="3">
+            <img src="img/placeholder.svg" alt="fourthFruit" width="40" height="40" >
+          </button>
+	  <button id="codeMakerGo">
+	    New
+	  </button>
+	</div>
+      </div>
+      <dialog id="codeMakerDialog">
+        <h2 class="instruction"> Pick any fruit then add  </h2>
+        <p class="instruction">Selected item starts on the left.</p>
+        <div class="pickColorCodes">
+          <button data-fruit-num="1" class="apple">
+            <img src="img/apple.svg" alt="apple_svg" width="40" height="40" >
+          </button>
+          <button data-fruit-num="2" class="strawberry">
+            <img src="img/strawberry.svg" alt="strawberry_svg" width="40"
+            height="40" >
+          </button>
+          <button data-fruit-num="3" class="pineapple">
+            <img src="img/pineapple.svg" alt="pineapple_svg" width="40" height="40" >
+          </button>
+          <button data-fruit-num="4" class="mango">
+            <img src="img/mango.svg" alt="mango_svg" width="40" height="40" >
+          </button>
+          <button data-fruit-num="5" class="grapes">
+            <img src="img/green_grapes.svg" alt="green_grapes_svg" width="40"
+            height="40" >
+          </button>
+        </div>
+        <button type="reset" id="closeCMDialog">Close</button>
+        <button id="addFruitCode">Add</button>
+        <button id="removeFruitCode">Remove</button>
+      </dialog>
+      <div class="clues">
+      </div>
+      <div class="codeBreaker">
+        <div class="colorCodes">
+          <button class="fruitCode" data-code-breaker="1">
+            <img src="img/apple.svg" alt="apple_svg" width="40" height="40" >
+          </button>
+          <button class="fruitCode" data-code-breaker="2">
+            <img src="img/strawberry.svg" alt="strawberry_svg" width="40"
+            height="40" >
+          </button>
+          <button class="fruitCode" data-code-breaker="3">
+            <img src="img/pineapple.svg" alt="pineapple_svg" width="40" height="40" >
+          </button>
+          <button class="fruitCode" data-code-breaker="4">
+            <img src="img/mango.svg" alt="mango_svg" width="40" height="40" >
+          </button>
+          <button class="fruitCode" data-code-breaker="5">
+            <img src="img/green_grapes.svg" alt="green_grapes_svg" width="40"
+            height="40" >
+          </button>
+        </div>
+    </div>
+  </div>
+  <footer>
+    <a href="https://github.com/aloe-lue/Mastermind" target="_blank" >
+      <blockquote class="author">by aloe-lue</blockquote>
+    </a>
+  </footer>
+  <dialog class="winOrLose">
+    <h3 class="announceConclusion"></h3>
+    <p class="announceConclusion"></p>
+  </dialog>
+</body>
+</html>

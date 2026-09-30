@@ -80,17 +80,6 @@ var FMastermind = function MasterMind()
 		}
 	})();
 
-	function sortFeedbackCode()
-	{
-		if (indexCM < 4) {
-			return;
-		}
-		if (guessesLeft < 0)
-			return;
-
-		feedbackCodeRows[guessesLeft].sort().reverse();
-	}
-
 	function checkCodeBreakerRow()
 	{
 		let codeBroke = 0;
@@ -108,25 +97,48 @@ var FMastermind = function MasterMind()
 			return false;
 		}
 
+		let exactMatches = 0;
+		let wrongPosMatches = 0;
+		
+		let matchedSecret = [false, false, false, false];
+		let matchedGuess = [false, false, false, false];
+		
+		// PASS 1: Count exact matches (3)
 		for (let i = 0; i < 4; i++) {
-			for (let j = checked; j < 4; j++) {
-				if (codeMaker[i] == codeBreakerRows[guessesLeft][j]
-					&& i == j) {
-					checked++;
-					codeBroke++;
-					feedbackCodeRows[guessesLeft][j] = 3;
-					break;
-				}
-				if (codeMaker[i] == codeBreakerRows[guessesLeft][j]
-					&& i != j) {
-					feedbackCodeRows[guessesLeft][j] = 2;
-					break;
-				}
-				feedbackCodeRows[guessesLeft][j] = 1;
-			}
+		    if (codeBreakerRows[guessesLeft][i] == codeMaker[i]) {
+		        exactMatches++;
+		        codeBroke++;
+		        matchedSecret[i] = true;
+		        matchedGuess[i] = true;
+		    }
 		}
-
-		sortFeedbackCode();
+		
+		// PASS 2: Count wrong position matches (2)
+		for (let i = 0; i < 4; i++) {
+		    if (matchedGuess[i]) continue; // Skip pegs that already had an exact match
+		
+		    for (let j = 0; j < 4; j++) {
+		        if (!matchedSecret[j] && codeBreakerRows[guessesLeft][i] == codeMaker[j]) {
+		            wrongPosMatches++;
+		            matchedSecret[j] = true; // Mark secret peg as used
+		            break;
+		        }
+		    }
+		}
+		
+		// STEP 3: Fill feedback row sequentially (3s first, then 2s, then 1s)
+		let feedback = [1, 1, 1, 1];
+		let idx = 0;
+		
+		for (let i = 0; i < exactMatches; i++) {
+		    feedback[idx++] = 3;
+		}
+		
+		for (let i = 0; i < wrongPosMatches; i++) {
+		    feedback[idx++] = 2;
+		}
+		
+		feedbackCodeRows[guessesLeft] = feedback;
 
 		if (codeBroke == 4) {
 			// even game is done this is fallback
@@ -156,7 +168,6 @@ var FMastermind = function MasterMind()
 		clearCodeMaker,
 		addToCodeBreaker,
 		checkCodeBreakerRow,
-		sortFeedbackCode,
 	};
 };
 
@@ -293,10 +304,10 @@ function showFeedbackCodes(mastermind)
 
 		switch (element){
 		case 1: 
-			feedbackCodeImg.src = "img/white_in_placeholder.svg";
+			feedbackCodeImg.src = "img/placeholder.svg";
 			break;
 		case 2:
-			feedbackCodeImg.src = "img/black_in_placeholder.svg";
+			feedbackCodeImg.src = "img/white_in_placeholder.svg";
 			break;
 		case 3:
 			feedbackCodeImg.src = "img/black_in_placeholder.svg";
@@ -428,6 +439,9 @@ window.onload = (wEvent) =>
 		} 	
 	});
 
+
+	const firstCodeBreaker = document.querySelector(`div[data-code-breakers="9"]`);
+	firstCodeBreaker.classList.add("highlight");
 	const fruitCodeBreakers = document.querySelectorAll("div.colorCodes button.fruitCode");
 	const announceWinner = document.querySelector("dialog.winOrLose");
 	const announceWinnerH3 = document.querySelector("h3.announceConclusion");
